@@ -2,10 +2,21 @@ import { createApp } from "vue";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles.css";
 
-import HelloWorld from "./components/HelloWorld";
+import ProductsList from "./components/ProductsList";
+import CartButton from "./components/cart/CartButton";
+import CartModal from "./components/cart/CartModal";
+const app = createApp({
+    data: () => ({
+        cartProducts: [],
+    }),
+    methods: {
+        addToCart(product) {
+            this.cartProducts.push(product);
+        }
+    }
+});
 
-const app = createApp({});
-
-app.component("hello-world", HelloWorld);
-
+app.component("products-list", ProductsList);
+app.component("cart-button", CartButton);
+app.component('cart-modal', CartModal)
 app.mount("#app");
