@@ -13,7 +13,7 @@
 
           <!-- CartProductsList component -->
           <cart-products-list v-if="!isEmptyCart()"></cart-products-list>
-          <h1>Cart is empty</h1>
+          <h1 v-else>Cart is empty</h1>
           <!-- CartBillingForm component -->
           <cart-billing-form></cart-billing-form>
         </div>
@@ -32,9 +32,9 @@ export default {
     CartProductsList,
     CartBillingForm
   },
-  methods: {
+  computed: {
     isEmptyCart() {
-      return this.$root.isEmptyCart();
+      return this.$root.isEmptyCart;
     }
   }
 }

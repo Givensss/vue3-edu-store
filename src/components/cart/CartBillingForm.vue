@@ -136,7 +136,11 @@ export default {
         email: this.email,
         phone: this.phone
       };
+      let products = this.$root.cartProducts;
+      products.totalAmount = this.$root.totalAmount;
+      products.totalPrice = this.$root.totalPrice;
       console.log(user);
+      console.log(products);
     }
   }
 }
