@@ -19,10 +19,10 @@
           <strong v-else class="text-danger">Sold out</strong>
         </p>
         <button
+            :disabled="!isAvailable || isSetInCart"
             @click="add"
-            :disabled="!isAvailable"
-            class="btn btn-success w-100 shadow-none">
-          {{isAvailable ? 'Add to cart' : 'Sold out'}}
+            :class="`btn ${(isAvailable && !isSetInCart) ? 'btn-success' : 'btn-secondary'} w-100 shadow-none`">
+          {{!isSetInCart ? "Add to cart" : "Added"}}
         </button>
       </div>
     </div>
@@ -49,11 +49,20 @@ export default {
     isAvailable: {
       Boolean
     },
+    id: {
+      Number
+    }
   },
   methods: {
     add() {
       this.$emit('add-to-cart');
     },
+  },
+  computed: {
+    isSetInCart() {
+      console.log(this.id)
+      return this.$root.isSetInCart(this.id)
+    }
   }
 }
 </script>

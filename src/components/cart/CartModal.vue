@@ -12,12 +12,10 @@
         <div class="modal-body p-4">
 
           <!-- CartProductsList component -->
-          <cart-products-list></cart-products-list>
+          <cart-products-list v-if="!isEmptyCart()"></cart-products-list>
+          <h1>Cart is empty</h1>
           <!-- CartBillingForm component -->
           <cart-billing-form></cart-billing-form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success">Place Order</button>
         </div>
       </div>
     </div>
@@ -31,8 +29,13 @@ import CartBillingForm from "./CartBillingForm";
 export default {
   name: "CartModal",
   components: {
-    "cart-products-list" : CartProductsList,
-    "cart-billing-form" : CartBillingForm
+    CartProductsList,
+    CartBillingForm
+  },
+  methods: {
+    isEmptyCart() {
+      return this.$root.isEmptyCart();
+    }
   }
 }
 </script>
